@@ -75,13 +75,59 @@ const defaultFrameworks: FrameworkItem[] = [
   { title: 'ISO 42001', description: 'Managementsysteem voor verantwoorde AI', href: '/frameworks/iso-42001' },
 ]
 
-const kenniscentrumLinks = [
-  { title: 'Alle artikelen', href: '/kenniscentrum', indent: false, heading: true },
-  { title: 'Compliance', href: '/kenniscentrum/compliance', indent: false, heading: false },
-  { title: 'Waarom moet je compliant zijn?', href: '/kenniscentrum/compliance/waarom-compliance', indent: true, heading: false },
-  { title: 'ISO 27001', href: '/kenniscentrum/iso-27001', indent: false, heading: false },
-  { title: 'Wat is ISO 27001?', href: '/kenniscentrum/iso-27001/wat-is-iso-27001', indent: true, heading: false },
-  { title: 'Stappenplan certificering', href: '/kenniscentrum/iso-27001/stappenplan', indent: true, heading: false },
+const kenniscentrumCategories = [
+  {
+    name: 'ISO 27001',
+    href: '/kenniscentrum/iso-27001',
+    description: 'Implementatie, certificering en onderhoud',
+  },
+  {
+    name: 'NIS2',
+    href: '/kenniscentrum/nis2',
+    description: 'Europese cybersecurity richtlijn',
+  },
+  {
+    name: 'NEN 7510',
+    href: '/kenniscentrum/nen-7510',
+    description: 'Informatiebeveiliging in de zorg',
+  },
+  {
+    name: 'Compliance',
+    href: '/kenniscentrum/compliance',
+    description: 'Wat is compliance en waarom is het verplicht?',
+  },
+  {
+    name: 'Certificering & Audits',
+    href: '/kenniscentrum/certificering',
+    description: 'Praktische tips voor audits',
+  },
+  {
+    name: 'ISO 42001 & AI',
+    href: '/kenniscentrum/ai',
+    description: 'Verantwoorde AI en de EU AI Act',
+    isNew: true,
+  },
+]
+
+const kenniscentrumFeatured = [
+  {
+    title: 'Waarom moet je organisatie compliant zijn?',
+    href: '/kenniscentrum/compliance/waarom-compliance',
+    readTime: '7 min',
+    category: 'Compliance',
+  },
+  {
+    title: 'ISO 27001 stappenplan',
+    href: '/kenniscentrum/iso-27001/stappenplan',
+    readTime: '10 min',
+    category: 'ISO 27001',
+  },
+  {
+    title: 'Wat is ISO 27001?',
+    href: '/kenniscentrum/iso-27001/wat-is-iso-27001',
+    readTime: '8 min',
+    category: 'ISO 27001',
+  },
 ]
 
 export function Navigation() {
@@ -242,7 +288,7 @@ export function Navigation() {
             Cases
           </Link>
 
-          {/* Kenniscentrum Dropdown */}
+          {/* Kenniscentrum Mega Menu */}
           <div
             className="relative"
             onMouseEnter={() => handleEnter(setKenniscentrumOpen, kenniscentrumTimer)}
@@ -252,24 +298,89 @@ export function Navigation() {
               Kenniscentrum
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${kenniscentrumOpen ? 'rotate-180' : ''}`} />
             </button>
+
             {kenniscentrumOpen && (
-              <div className="absolute top-full left-0 pt-2 z-50">
-                <div className="w-64 bg-white border border-slate-200 rounded-lg shadow-lg py-2">
-                  {kenniscentrumLinks.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`block py-2.5 text-sm hover:bg-slate-50 transition-colors ${
-                        item.indent
-                          ? 'pl-7 text-slate-400 hover:text-slate-600'
-                          : item.heading
-                            ? 'px-4 font-semibold text-slate-900 border-b border-slate-100 pb-3 mb-1'
-                            : 'px-4 font-medium text-slate-700'
-                      }`}
-                    >
-                      {item.title}
-                    </Link>
-                  ))}
+              <div className="fixed left-0 right-0 top-20 z-50">
+                <div className="bg-white border-b border-slate-200 shadow-xl">
+                  <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+                    <div className="grid grid-cols-2 gap-0">
+
+                      {/* Left: categories */}
+                      <div className="pr-12">
+                        <div className="flex items-center justify-between mb-5">
+                          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                            Onderwerpen
+                          </p>
+                          <Link
+                            href="/kenniscentrum"
+                            className="text-xs font-semibold text-brand-accent hover:underline"
+                          >
+                            Alle artikelen →
+                          </Link>
+                        </div>
+                        <div className="grid grid-cols-2 gap-1">
+                          {kenniscentrumCategories.map((cat) => (
+                            <Link
+                              key={cat.href}
+                              href={cat.href}
+                              className="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-brand-accent mt-2 flex-shrink-0 transition-colors" />
+                              <div>
+                                <div className="text-sm font-semibold text-slate-900 group-hover:text-brand-accent transition-colors flex items-center gap-2">
+                                  {cat.name}
+                                  {cat.isNew && (
+                                    <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-full">
+                                      Nieuw
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                                  {cat.description}
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right: featured articles */}
+                      <div className="border-l border-slate-100 pl-12">
+                        <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-5">
+                          Populaire artikelen
+                        </p>
+                        <div className="space-y-1">
+                          {kenniscentrumFeatured.map((article) => (
+                            <Link
+                              key={article.href}
+                              href={article.href}
+                              className="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mt-2 flex-shrink-0 group-hover:bg-slate-400 transition-colors" />
+                              <div className="flex-1">
+                                <div className="text-sm font-medium text-slate-600 group-hover:text-slate-900 transition-colors leading-snug">
+                                  {article.title}
+                                </div>
+                                <div className="text-xs text-slate-400 mt-0.5">
+                                  {article.category} · {article.readTime} leestijd
+                                </div>
+                              </div>
+                              <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-slate-500 flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-all" />
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-5 pl-3 pt-4 border-t border-slate-100">
+                          <Link
+                            href="/kenniscentrum"
+                            className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-slate-600 hover:gap-2.5 transition-all"
+                          >
+                            Naar het kenniscentrum <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
