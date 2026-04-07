@@ -401,7 +401,7 @@ export function Navigation() {
           asChild
           className="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 shadow-sm"
         >
-          <Link href="#demo">Demo aanvragen</Link>
+          <Link href="/demo">Demo aanvragen</Link>
         </Button>
 
       </div>
