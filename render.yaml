@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: dca-website
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install -g pnpm && pnpm install && pnpm run build
+    startCommand: pnpm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 3000
