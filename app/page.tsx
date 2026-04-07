@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { AIFrameworkBanner } from '@/components/ai-framework-banner'
 import { ArrowRight, Check, AlertTriangle, ShieldCheck, TrendingUp, FileWarning } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -277,6 +278,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <AIFrameworkBanner />
 
       {/* Framework Overview */}
       <section id="frameworks" className="py-40 bg-white border-b border-slate-200">
