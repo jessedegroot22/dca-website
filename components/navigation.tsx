@@ -275,6 +275,10 @@ export function Navigation() {
             )}
           </div>
 
+          <Link href="/blog" className="text-sm text-slate-700 hover:text-slate-900 transition-colors font-medium">
+            Blog
+          </Link>
+
           <Link href="#over-ons" className="text-sm text-slate-700 hover:text-slate-900 transition-colors font-medium">
             Over ons
           </Link>
