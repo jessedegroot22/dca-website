@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { Reviews } from '@/components/reviews'
 import { Button } from '@/components/ui/button'
 import { Check, Shield, Users, Zap, Target } from 'lucide-react'
 
@@ -222,6 +223,8 @@ export default function PakkettenPage() {
           </div>
         </div>
       </section>
+
+      <Reviews />
 
       {/* CTA */}
       <section id="contact" className="py-40 bg-slate-900">
